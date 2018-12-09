@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#8abed4">
+    <meta name="description" content="Pixel Art Maker by Roman Popov">
+    <title>Pixel Art Maker</title>
+    <link rel="icon" type="image/png" href="./img/favicon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister%7CCinzel+Decorative:900">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="./js/app.js"></script>
+</head>
+
+<body>
+    <div id="content">
+        <h1 id="main-header">Pixel Art Maker</h1>
+        <div class="block">
+            <div class="welcome">
+                <h2>Choose grid properties, click button, pick a color and enjoy!</h2>
+                <div class="separator"></div>
+            </div>
+
+            <div class="canvas-prop">
+                <div class="hints hints-pulse">i</div>
+
+                <form class="size-picker">
+                    <label for="input-height">Grid Height:</label>
+                    <input type="number" id="input-height" class="input-number" name="height" min="2" max="250" value="30">
+
+                    <label for="input-width">Grid Width:</label>
+                    <input type="number" id="input-width" class="input-number" name="width" min="2" max="250" value="30">
+
+                    <label for="input-size">Cell Size, px:</label>
+                    <input type="number" id="input-size" class="input-number" name="size" min="1" max="100" value="10">
+
+                    <label for="input-grid">Add grid lines?</label>
+                    <input type="checkbox" id="input-grid" name="borders" checked>
+
+                    <input type="submit" id="submit" class="btn pulse" value="Start drawing!">
+                </form>
+
+                <button id="clear" class="btn">Delete canvas</button>
+            </div>
+
+            <table>
+                <tr>
+                    <td>
+                        <label for="color-picker-49">1st color:</label>
+                        <!-- Code 49 == key "1" -->
+                        <input type="color" id="color-picker-49" class="color-picker" value="#ff0000">
+                    </td>
+                    <td>
+                        <label for="color-picker-50">2nd color:</label>
+                        <!-- Code 50 == key "2" -->
+                        <input type="color" id="color-picker-50" class="color-picker" value="#00ff00">
+                    </td>
+                    <td>
+                        <label for="color-picker-51">3rd color:</label>
+                        <!-- Code 51 == key "3" -->
+                        <input type="color" id="color-picker-51" class="color-picker" value="#0000ff">
+                    </td>
+                    <td>
+                        <label for="color-picker-52">4th color:</label>
+                        <!-- Code 52 == key "4" -->
+                        <input type="color" id="color-picker-52" class="color-picker" value="#000000">
+                    </td>
+                    <td>
+                        <button id="bg-btn" class="btn">Add background</button>
+                    </td>
+                    <td>
+                        <button class="btn undo changes" disabled><img class='btn-img' src="./img/undo-redo.png"
+                                alt="↶"></button>
+                        <button class="btn redo changes" disabled><img class='btn-img flip' src="./img/undo-redo.png"
+                                alt="↷"></button>
+                        <button class="btn eyedropper"><img class='btn-img' src="./img/eyedropper.svg"
+                                alt="✑"></button>
+                    </td>
+                    <td>
+                        <p class="color-text">Current colors:</p>
+                    </td>
+                    <td>
+
+                        <table class="change-color">
+                            <tr>
+                                <td id="take-this-color" class="color-box">
+                                    <img class="erase-img" src="./img/eraser.svg" alt="Erase">
+                                </td>
+                                <td id="bg-color" class="color-box"></td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="canvas-background">
+            <table id="pixel-canvas" class="borders"></table>
+        </div>
+    </div>
+
+
+
+    <div class="pop-up">
+        <div class="alert del-question">
+            <div class="msg-text">
+                <p>
+                    Your current canvas will be deleted!
+                    <br> Do you really want to continue?
+                </p>
+            </div>
+            <div class="btn-pad">
+                <button id="no-btn" class="btn alert-btn">No</button>
+                <button id="yes-btn" class="btn alert-btn">Yes</button>
+            </div>
+        </div>
+
+        <div class="alert error-del">
+            <div class="msg-text">
+                <p>There is nothing to delete!</p>
+            </div>
+            <div class="btn-pad">
+                <button class="btn alert-btn">Close</button>
+            </div>
+        </div>
+
+        <div class="alert error-eyedrop">
+            <div class="msg-text">
+                <p>This cell has no color!</p>
+            </div>
+            <div class="btn-pad">
+                <button class="btn alert-btn">Close</button>
+            </div>
+        </div>
+
+        <div id="instructions" class="alert">
+            <div class="msg-text">
+                <h2>Hi there! There are some instructions for you!</h2>
+                <div class="instr-body">
+                    <h3>Nice to see you here! Thanks for your interest in my work.</h3>
+                    <div class="instr-head">
+                        <div class="table-of-contents">
+                            <h3>Table of contents</h3>
+                            <ol>
+                                <li><a href="#description-of-functions">Description of functions</a></li>
+                                <li><a href="#list-of-hotkeys">List of hotkeys</a></li>
+                                <!-- <li><a href="#list-of-visual-changes">List of visual changes</a></li> -->
+                            </ol>
+                        </div>
+                        <div>
+                            <img class="idea-pic" src="./img/idea.png"
+                                alt="Idea picture">
+                        </div>
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="instr-section">
+                        <a id="description-of-functions"></a>
+                        <h2>Description of functions</h2>
+                        <p><i>Note: All functions except #5, #7 and #8 have hotkeys</i></p>
+
+                        <ol class="function-description">
+                            <li><span class="underline">Choice of the canvas size</span>
+                                <ul>
+                                    <li>You can choose the canvas size, by filling the respective fields of a form
+                                        <span class="note">"Grid Height" and "Grid Width"</span>;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Choice of the cell size</span>
+                                <ul>
+                                    <li>You can choose the cell size, by filling the respective field of a form
+                                        <span class="note">"Cell Size, px"</span>;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Choice of the grid visibility</span>
+                                <ul>
+                                    <li>You can choose whether to draw a grid on the canvas or not by clicking
+                                        on the checkbox <span class="note">"Add grid lines?"</span>;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Choice of the drawing colors</span>
+                                <ul>
+                                    <li>You can choose any colors you want by clicking on color-boxes
+                                        <span class="note">(1st color — 4th color)</span>;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Display of the current colors</span>
+                                <ul>
+                                    <li>You can see current colors on the right of the page in
+                                        <span class="note">"Current colors"</span> section;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Choice of the canvas background</span>
+                                <ul>
+                                    <li>You can choose whether to draw a background on the canvas or not by clicking
+                                        on the button <span class="note">"Add background / Remove background"</span>.
+                                        The current color will become background color of the canvas;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Drawing function</span>
+                                <ul>
+                                    <li>You can <span class="note">click</span> on the cell or <span class="note">click
+                                            and drag</span>
+                                        your mouse to draw. In other words, every cell under the cursor will be colored
+                                        while the mouse button is pressed. You can have no worry if the cursor
+                                        accidentally
+                                        go outside the canvas while mouse button is pressed. Just go back and continue
+                                        drawing - your line will not be interrupted;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Erasing function</span>
+                                <ul>
+                                    <li>You can erase a color of the cell by combination <span class="note">Shift +
+                                            left mouse button</span>.
+                                        The icon of the <span class="note">eraser</span> will appear instead of current
+                                        color in the <span class="note">"Current colors"</span> section. Click and drag
+                                        function is also available;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Eyedropper function</span>
+                                <ul>
+                                    <li>You can get a color of any colored cell by using <span class="note">Eyedropper</span>.
+                                        You can find <span class="note">this button</span> on the control panel.
+                                        At first click on the <span class="note">Eyedropper button</span>, then
+                                        click on a cell with necessary color you want to get. If you try to click
+                                        with active eyedropper on the cell that have no color, you will receive
+                                        an error message. (Don't worry. It's just a pop-up notification window);</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Undo-Redo function</span>
+                                <ul>
+                                    <li>You can <span class="note">undo and redo</span> few changes that have been
+                                        made. The number of undo-redo operations is limited depends on the canvas size.
+                                        You can find <span class="note">these buttons</span> on the control panel;</li>
+                                </ul>
+                            </li>
+
+                            <li><span class="underline">Clear and delete canvas function</span>
+                                <ul>
+                                    <li>You can use this function by clicking on <span class="note">"Clear / Delete
+                                            canvas"</span>
+                                        button. If your canvas has at least one colored cell you can clear all the
+                                        canvas by clicking on <span class="note">"Clear canvas"</span> button. If your
+                                        canvas has no colored cells by clicking on the <span class="note">"Delete
+                                            canvas"</span>
+                                        button. Your confirmation is required after every click on this button that
+                                        you are really ready to clear the canvas. <span class="note">WARNING! This
+                                            operation cannot be undone!</span>
+                                        If you try to click on this button when there is no canvas on the page you
+                                        will receive an error message. (Don't worry. It's just a pop-up notification
+                                        window).</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <a href="#" class="back-to-top">↑ Back to top ↑</a>
+                    <div class="separator"></div>
+
+                    <div class="instr-section hotkeys">
+                        <a id="list-of-hotkeys"></a>
+                        <h2>List of hotkeys</h2>
+
+                        <ol>
+                            <li>Move focus to "Grid Height" form field: <span class="key">H</span></li>
+
+                            <li>Move focus to "Grid Width" form field: <span class="key">W</span></li>
+
+                            <li>Move focus to "Cell Size" form field: <span class="key">S</span></li>
+
+                            <li>Toggle grid visibility: <span class="key">G</span></li>
+
+                            <li>Active color keys according to numbers of colors: <span class="key">1 — 4</span> (e.g.
+                                : 1 == 1st color)</li>
+
+                            <li>Toggle canvas background: <span class="key">B</span></li>
+
+                            <li>Toggle eyedropper mode: <span class="key">I</span></li>
+
+                            <li>Undo changes: <span class="key">Ctrl + Z</span></li>
+
+                            <li>Redo changes: <span class="key">Ctrl + Y</span></li>
+
+                            <li>Clear / delete canvas: <span class="key">Del</span></li>
+
+                            <li>Close pop-up modal window with no changes: <span class="key">Esc</span></li>
+                        </ol>
+                    </div>
+
+                    <a href="#" class="back-to-top">↑ Back to top ↑</a>
+                    <div class="separator"></div>
+
+                    <div class="instr-section">
+                        <div class="final-background">
+                            <img src="./img/fireworks.png"
+                                alt="firework">
+                            <img class="flip" src="./img/fireworks.png"
+                                alt="firework">
+                        </div>
+                        <div class="final-text">
+                            <p>That's all! Thank you for reading this manual to the end.</p>
+                            <p>Now you can click "LET'S DRAW" button and try to create a masterpiece!</p>
+                            <p>Enjoy and have fun!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-pad">
+                <button class="btn alert-btn letsdraw-btn">LET'S DRAW !</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="footer" class="block">
+        <div>
+            © 2017 Roman Popov for
+            <a href="https://www.udacity.com/">Udacity</a>
+        </div>
+        <div id="contacts">
+            My contacts:
+            <a title="Telegram contact" href="https://t.me/Barmalew"><img class="cnt-logo" src="./img/telegram-icon.png"
+                    alt="Telegram"></a>
+            <a title="VK contact" href="https://vk.com/vk.popovroman"><img class="cnt-logo" src="./img/vk-icon.png"
+                    alt="Vkontakte"></a>
+            <a title="Udacity contact" href="https://discussions.udacity.com/u/RomanPopov/"><img class="cnt-logo" src="./img/udacity-icon.png"
+                    alt="Udacity"></a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,701 @@
+/* >>>>>> Main section >>>>>> */
+html {
+    height: 100%;
+    font-size: 2.114vh;
+}
+
+body {
+    background-attachment: fixed;
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#content {
+    box-sizing: border-box;
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-weight: bold;
+    min-height: 100%;
+    padding: 0 2% 3em;
+    position: relative;
+}
+
+#footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-weight: bold;
+    margin: 0 2%;
+    margin-top: -3em;
+    padding: 0.2em;
+    position: relative;
+}
+
+h1 {
+    color: white;
+    text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black;
+    font-size: 3.5em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.2em;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.8), transparent);
+}
+
+.go-paint {
+    font-size: 2em;
+    animation: letsDraw 0.5s linear;
+    padding: 0;
+    background: none;
+}
+
+@keyframes letsDraw {
+    0% {
+        font-size: 3.5em;
+        padding: 0.2em;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.8), transparent);
+    }
+    25% {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.7), transparent);
+    }
+    50% {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.6), transparent);
+    }
+    75% {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.5), transparent);
+    }
+    85% {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.4), transparent);
+    }
+    95% {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.2), transparent);
+    }
+    100% {
+        background: none;
+        font-size: 2em;
+        padding: 0;
+    }
+}
+
+.block {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 7.5vh;
+    box-shadow: 0px 0px 0.5em 0.2em hsla(0, 0%, 0%, 0.5);
+    padding: 1em;
+}
+
+.separator {
+    background: radial-gradient(lightblue, lightblue, grey, white, white);
+    height: 0.7vh;
+}
+
+.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+/* <<<<<< End of main section <<<<<< */
+
+
+/* >>>>>> Greetings section >>>>>> */
+.welcome {
+    height: 8vh;
+}
+
+.welcome h2 {
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-size: 1.8em;
+    font-weight: 200;
+    text-shadow: lightpink 0 0 1em;
+    margin: 0 0 0.5em;
+}
+/* <<<<<< End of greetings section <<<<<< */
+
+
+/* >>>>>> Control panel section >>>>>> */
+.canvas-prop {
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hints {
+    cursor: pointer;
+    font-size: 2em;
+    color: white;
+    height: 1.25em;
+    width: 1.25em;
+    border-radius: 4vh;
+    margin-right: 6vh;
+    text-shadow: black 0 0 0.2vh,
+                 black 0 0 0.2vh,
+                 black 0 0 0.2vh,
+                 black 0 0 0.2vh,
+                 DeepSkyBlue 0 0 5vh,
+                 DeepSkyBlue 0 0 5vh,
+                 DeepSkyBlue 0 0 5vh;
+    transition: background, box-shadow 0.25s linear;
+
+}
+
+.hints:hover {
+    background: lightblue;
+    box-shadow: 0 0 5vh 0.5vh lightblue;
+    animation: none;
+}
+
+.hints-pulse {
+    animation: hints-pulse 1s ease-out infinite alternate;
+}
+
+@keyframes hints-pulse {
+    100% {
+        box-shadow: 0 0 5vh 0.5vh lightblue;
+        text-shadow: black 0 0 0.2vh,
+                     black 0 0 0.2vh,
+                     black 0 0 0.2vh,
+                     black 0 0 0.2vh,
+                     DeepSkyBlue 0 0 10vh,
+                     DeepSkyBlue 0 0 10vh,
+                     DeepSkyBlue 0 0 10vh;
+    }
+}
+
+.size-picker {
+    margin-right: 2em;
+}
+
+.input-number {
+    width: 5em;
+    font-size: 1.7vh;
+}
+
+.input-number:invalid {
+    color: red;
+    font-weight: bolder;
+}
+
+.activeForm {      /* Add/remove this class if form is focused/unfocused */
+    border-color: orange;
+    border-width: 0.25em;
+    padding: 0;
+}
+
+input {
+    margin: 2vh 2vw 2vh 0.5vw;
+    padding: 0.1em;
+    vertical-align: middle;
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+#input-grid {
+    width: 2vh;
+    height: 2vh;
+}
+
+.btn {
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-size: 1.9vh;
+    font-weight: bold;
+    line-height: 2vh;
+    cursor: pointer;
+    background-color: antiquewhite;
+    border: 0.2em solid lightblue;
+    border-radius: 1em;
+    height: 4vh;
+    padding: 0em 1em;
+    transition-property: background-color, box-shadow, border;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+.btn:hover,
+.btn:focus,
+input:hover,
+input:focus {
+    box-shadow: 0 0 0.5em 0.2em gray;
+    outline: none;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: rgb(255, 207, 164);
+    border: 0.2em solid grey;
+}
+
+#clear {
+    width: 20vh;
+}
+
+#submit {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 0.8em;
+    width: 12em;
+    padding: 0 1em;
+    transition: background-color, border-color, box-shadow  0.25s linear;
+}
+
+#submit:hover,
+#submit:focus {
+    background-color: peachpuff;
+    border-color: crimson;
+    box-shadow: 0 0 2em 0.3em rgb(255,252,89);
+    animation: hover 0.25s linear;
+}
+
+@keyframes hover {
+    0% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 0 0 2em 0.3em rgba(255,252,89,1);
+    }
+}
+
+.pulse {
+    animation: pulsate 1.5s ease-in infinite alternate;
+}
+
+@keyframes pulsate {
+    100% {
+        background-color: tomato;
+        border-color: crimson;
+        box-shadow: 0 0 1em 0.2em tomato;
+    }
+}
+
+.block > table {
+    width: 100%;
+    padding: 0 2em 0 4em;
+}
+
+.color-picker {
+    height: 3vh;
+    width: 3vw;
+}
+
+#bg-btn {
+    width: 8em;
+    height: 3em;
+    margin-right: 2em;
+}
+
+.changes,
+.eyedropper {
+    width: 3em;
+    height: 3em;
+    padding: 0;
+    margin: 0 0.5em;
+}
+
+.btn-img{
+    vertical-align: middle;
+    width: 80%;
+}
+
+.changes:disabled{
+    background-color: gainsboro;
+    border-color: lightgray;
+}
+
+.changes:disabled:hover{
+    box-shadow: 0px 0px 5px 2px red;
+}
+
+.color-text {
+    font-size: 1.25em;
+    font-weight: bold;
+    text-align: right;
+    margin: 0 1em 0 2em;
+}
+
+.color-box {
+    position: relative;
+    border: 0.08em solid black;
+    width: 4vh;
+    height: 4vh;
+    margin: 0;
+}
+
+#take-this-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.erase-img {
+    visibility: hidden;
+    width: 80%;
+    background: white;
+    padding: 0.2vh;
+    border-radius: 10vh;
+    box-shadow: 0px 0px 0.5em 0.2em white;
+}
+
+#bg-color {
+    left: -37%;
+    top: -0.5em;
+    z-index: 1;
+}
+/* <<<<<< End of control panel section <<<<<< */
+
+
+/* >>>>>> Pixel canvas section >>>>>> */
+.canvas-background {
+    display: none;
+    background: white;
+    box-shadow: 0px 0px 0.5em 0.2em hsla(0, 0%, 0%, 0.5);
+    border-radius: 50px;
+    font-size: 5px;     /* for constant margin (constant canvas frame) in case of zoom */
+    margin: 2% auto 2% auto;
+    padding: 7em;
+    width: fit-content;
+    /* for better compatibility */
+    width: -moz-fit-content;
+    width: -webkit-fit-content;
+}
+
+#pixel-canvas {
+    border: 1px solid gainsboro;
+    border-collapse: collapse;
+    /* for IE browser */
+    margin: auto;
+}
+
+#pixel-canvas:hover {
+    cursor: url(../img/brush.svg) 0 40, default;
+}
+
+.drawing {
+    cursor: url(../img/brush-paint.svg) 0 40, default !important;
+}
+
+.erase-cursor:hover {
+    cursor: url(../img/eraser.svg) 6 40, default !important;
+}
+
+.borders  * {       /* Add/remove this class depends on the checkbox */
+    border: 1px solid gainsboro;
+}
+
+#pixel-canvas td,
+#pixel-canvas tr {
+    box-sizing: border-box;
+}
+
+.active-eyedr {
+    cursor: url(../img/eyedropper.svg) 2 38, copy !important;
+}
+
+.active-eyedr:focus {
+    border: 0.2em solid tomato;
+}
+/* <<<<<< End of pixel canvas section <<<<<< */
+
+
+/* >>>>>> Pop-up windows section >>>>>> */
+.pop-up {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    transition: all 0.25s linear;
+}
+
+.alert {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    width: 50vh;
+    height: 25vh;
+    box-sizing: border-box;
+    background-color: snow;
+    border: 0.35vh solid red;
+    border-radius: 10vh;
+    box-shadow: 0px 0px 7vh 1vh black;
+    background: radial-gradient( snow,
+                                 snow,
+                                 snow,
+                                 snow,
+                                 red);
+    transition: all 0.25s linear;
+}
+
+.msg-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    height: 100%;
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-size: 2.5vh;
+    line-height: 5vh;
+    box-sizing: border-box;
+    padding: 0 2% 8vh;
+}
+
+.btn-pad {
+    position: relative;
+    z-index: 999;
+    margin: 0 2%;
+    margin-top: -8vh;
+    padding: 0;
+}
+
+.btn-pad .btn {
+    font-size: 2.5vh;
+    width: 10vh;
+    height: 4vh;
+    border: 0.3vh solid lightblue;
+    border-radius: 1vh;
+    margin: 0 5vh;
+    padding: 0;
+    transition: none;
+}
+
+#no-btn:hover,
+#no-btn:focus,
+#yes-btn:hover,
+#yes-btn:focus {
+    font-weight: bold;
+    color: white;
+    border: none;
+}
+
+#no-btn:hover,
+#no-btn:focus {
+    background-color: seagreen;
+}
+
+#yes-btn:hover,
+#yes-btn:focus {
+    background-color: firebrick;
+}
+
+#instructions {
+    visibility: hidden;
+    opacity: 0;
+    width: 70vw;
+    height: 80vh;
+    box-sizing: border-box;
+    background: snow;
+    border: 0.35vh solid lightblue;
+    border-radius: 10vh;
+    box-shadow: 0px 0px 7vh 1vh black;
+    transition: all 0.25s linear;
+}
+
+.msg-text > h2 {
+    background: linear-gradient(90deg, transparent, bisque, transparent);
+    width: 100%;
+}
+
+.instr-body {
+    display: block;
+    height: 55vh;
+    width: 85%;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1vh double bisque;
+    border-radius: 2vh;
+    padding: 0 3vw;
+    scroll-behavior: smooth;
+}
+
+.instr-body > h3 {
+    margin-bottom: 0.5vh;
+}
+
+.instr-body a {
+    transition: all 0.5s ease-out;
+    border-bottom: 1px dashed black;
+    text-decoration: none;
+    color: black
+}
+
+.instr-body a:hover {
+    color: red;
+    border-bottom: 1px solid red;
+}
+
+.instr-head {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 5vh;
+}
+
+.table-of-contents {
+    width: 60%;
+    line-height: 2.5em;
+    text-align: left;
+}
+
+.idea-pic {
+    width: 25vh;
+}
+
+.instr-section {
+    margin: 5em auto;
+    text-align: left;
+}
+
+.instr-section > h2 {
+    text-align: center;
+    background: linear-gradient(90deg,
+                                transparent,
+                                rgba(255, 255, 0, 0.5),
+                                transparent);
+    width: 60%;
+    margin: auto;
+    margin-bottom: 2em;
+}
+
+.instr-section > p {
+    text-align: center;
+    margin-bottom: 2.5em;
+}
+
+.instr-section ol,
+.instr-section ul {
+    margin-top: 0.5em;
+    padding-left: 2em;
+}
+
+.instr-section ul {
+    margin-bottom: 2.5em;
+}
+
+.instr-section a {
+    font-size: 0.8em;
+}
+
+.instr-section:last-of-type {
+    position: relative;
+    margin-bottom: 1em;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.function-description  ul {
+    list-style-type: none;
+}
+
+.note,
+.key {
+    font-weight: bold;
+    text-shadow: crimson 0 0 5vh;
+}
+
+.key {
+    margin: 0 1.5em;
+}
+
+.hotkeys li{
+    margin-bottom: 1.5em;
+    height: 2em;
+    max-width: fit-content;
+    /* for better compatibility */
+    width: -moz-fit-content;
+    width: -webkit-fit-content;
+    border-bottom: 0.2vh dotted lightblue;
+}
+
+.final-text {
+    position: relative;
+    z-index: 150;
+    text-align: center;
+    height: 17em;
+}
+
+.final-background {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+.final-background img {
+    height: 70%;
+}
+
+.flip {
+    transform: scale(-1, 1)
+}
+
+.letsdraw-btn {
+    height: 2em !important;
+    width: 10em !important;
+    border-radius: 50% !important;
+}
+
+.letsdraw-btn:hover {
+    animation: ld-btn 3s linear infinite;
+    text-shadow: white 0 0 0.2vh,
+                 white 0 0 0.2vh,
+                 white 0 0 0.2vh,
+                 white 0 0 0.2vh,
+                 white 0 0 1vh,
+                 white 0 0 1vh,
+                 white 0 0 1vh,
+                 white 0 0 1vh;
+}
+
+@keyframes ld-btn {
+    0%   { background-color: red; }
+    14%  { background-color: orange; }
+    28%  { background-color: yellow; }
+    42%  { background-color: lime; }
+    56%  { background-color: aqua; }
+    70%  { background-color: dodgerblue; }
+    84%  { background-color: #8b00ff; }
+    100% { background-color: red; }
+}
+/* <<<<<< End of pop-up windows section <<<<<< */
+
+
+/* >>>>>> Footer section >>>>>> */
+#contacts {
+    display: flex;
+    justify-content: space-between;
+    align-items: inherit;
+    position: absolute;
+    right: 5%;
+    height: 80%;
+    width: 15%;
+}
+
+.cnt-logo {
+    position: relative;
+    height: 1.5em;
+    border-radius: 10em;
+    vertical-align: middle;
+    transition: all 0.25s linear;
+}
+
+.cnt-logo:hover {
+    height: 1.9em;
+    box-shadow: black 0 0 1em;
+}
+/* <<<<<< End of footer section <<<<<< */
